@@ -14,8 +14,18 @@
   word-break: break-all;
   font-family: "MS PGothic", sans-serif;
   color: #ddd;
-  /*-webkit-font-smoothing: antialiased;*/
+  -webkit-font-smoothing: auto;
   font-feature-settings: "palt";
+  transition: all 200ms 0s ease;
+
+  &.closed {
+    right: -270px;
+
+    .ceg__toggle {
+      left: -28px;
+      position: relative;
+    }
+  }
 
   .ceg__wrap {
     display: flex;
@@ -27,6 +37,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #00a4de;
+  }
+
+  .ceg__toggle {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    border: 0;
     background-color: #00a4de;
   }
 
