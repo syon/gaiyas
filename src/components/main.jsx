@@ -7,6 +7,13 @@ module.exports = React.createClass({
   propTypes: {
     store: T.object.isRequired
   },
+  autoControl(commentCount) {
+    if (commentCount > 0 && window.innerWidth > 1200) {
+      $('#chrome-extension-gaiyas').removeClass('closed')
+    } else {
+      $('#chrome-extension-gaiyas').addClass('closed')
+    }
+  },
   toggleClose() {
     $('#chrome-extension-gaiyas').toggleClass('closed')
   },
@@ -27,6 +34,7 @@ module.exports = React.createClass({
       )
       comments.push(e)
     })
+    this.autoControl(comments.length)
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">

@@ -49,6 +49,8 @@
     line-height: 1;
     border: 0;
     background-color: #00a4de;
+    outline: none;
+    cursor: pointer;
   }
 
   .ceg__title {
