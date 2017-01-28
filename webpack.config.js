@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const webpack = require('webpack')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   context: __dirname + '/src',
@@ -46,11 +46,11 @@ module.exports = {
   ],
 
   postcss: function() {
-    var precss = require('precss');
-    var autoprefixer = require('autoprefixer');
+    var precss = require('precss')
+    var autoprefixer = require('autoprefixer')
     return [
       autoprefixer({ browsers: ['IE 9', 'IE 10', 'IE 11', 'last 2 versions'] }),
       precss
-    ];
+    ]
   }
-};
+}
