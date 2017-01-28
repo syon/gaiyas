@@ -20,7 +20,7 @@ module.exports = React.createClass({
       const e = (
         <div key={b.user} className={`ceg__line ${noc}`}>
           <div className="ceg__avatar">
-            <img src={`http://cdn1.www.st-hatena.com/users/${u}/profile_l.gif`}/>
+            <img src={`//cdn1.www.st-hatena.com/users/${u}/profile_l.gif`}/>
           </div>
           <div className="ceg__comment">{b.comment}</div>
         </div>
