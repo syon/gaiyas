@@ -14,11 +14,12 @@ module.exports = React.createClass({
   render() {
     const h = this.props.store.hatena
     const comments = []
-    h.bookmarks.map((b) => {
+    h.bookmarks.filter((b) => {
+      return '' !== b.comment
+    }).map((b) => {
       const u = `${b.user.slice(0,2)}/${b.user}`
-      const noc = '' === b.comment ? 'ceg__no-comment' : ''
       const e = (
-        <div key={b.user} className={`ceg__line ${noc}`}>
+        <div key={b.user} className="ceg__line">
           <div className="ceg__avatar">
             <img src={`//cdn1.www.st-hatena.com/users/${u}/profile_l.gif`}/>
           </div>
