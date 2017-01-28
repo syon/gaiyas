@@ -6,7 +6,12 @@ import Main from './components/main.jsx'
 
 import './css/app.css'
 
-let store = {}
+let store = {
+  hatena: {
+    bookmarks: [],
+    count: ''
+  }
+}
 
 let B = {}
 if (location.protocol === 'https:') {
@@ -18,7 +23,7 @@ const target_url = location.href
 
 $.ajax({
   url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url,
-  dataType: 'jsonp',
+  // dataType: 'jsonp', // Needs on development
   cache: false
 })
   .done(function(data) {
@@ -29,7 +34,7 @@ $.ajax({
 function render() {
   ReactDOM.render(
     <Main store={store} />,
-    document.getElementById('app')
+    document.getElementById('chrome-extension-gaiyas')
   )
 }
 

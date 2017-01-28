@@ -28,7 +28,7 @@ module.exports = React.createClass({
       comments.push(e)
     })
     return (
-      <div id="chrome-extension-gaiyas">
+      <div className="ceg__wrap">
         <div className="ceg__header">
           <div className="ceg__title">Hatena Bookmark</div>
           <div className="ceg__cnt">{h.count}</div>
