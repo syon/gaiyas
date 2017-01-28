@@ -28,14 +28,14 @@ $.ajax({
 })
   .done(function(data) {
     store.hatena = data
-    render()
+    render(store)
   })
 
-function render() {
+function render(store) {
   ReactDOM.render(
     <Main store={store} />,
     document.getElementById('chrome-extension-gaiyas')
   )
 }
 
-render()
+render(store)
