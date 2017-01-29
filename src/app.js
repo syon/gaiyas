@@ -10,6 +10,7 @@ import './css/app.css'
 let store = {
   hatena: {
     bookmarks: [],
+    ranking: [],
     count: ''
   },
   bucome: []
@@ -29,9 +30,12 @@ $.ajax({
   cache: false
 })
   .done(function(data) {
+    // console.log(data)
     store.hatena = data
+    store.hatena.ranking = Object.assign([], data.bookmarks)
     render(store)
-    data.bookmarks.map((b) => {
+    let remain_cnt = data.bookmarks.length
+    data.bookmarks.forEach((b) => {
       const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
       $.ajax({
         url: `http://s.hatena.com/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
@@ -41,15 +45,32 @@ $.ajax({
         .done((data) => {
           if (data.entries.length > 0) {
             const stars = data.entries[0].stars
-            if (stars.length > 0) {
-              store.bucome[b.user] = stars.length
-              // console.log('Star Count', b.user, stars.length)
-              render(store)
-            }
+            store.bucome[b.user] = stars.length
+            applyStarCountForRanking(b.user, stars.length)
+            // console.log(store.hatena.ranking)
+            render(store)
           }
+        })
+        .always(() => {
+          remain_cnt = remain_cnt - 1
+          // console.log(remain_cnt)
         })
     })
   })
+
+function matchUser(element) {
+  return element.user === this
+}
+
+function applyStarCountForRanking(user, star_cnt) {
+  let b = store.hatena.ranking.find(matchUser, user)
+  b.star = star_cnt
+  store.hatena.ranking.sort((a, b) => {
+    if (a.star > b.star) return -1
+    if (a.star < b.star) return 1
+    return 0
+  })
+}
 
 function render(store) {
   ReactDOM.render(
