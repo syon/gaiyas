@@ -23,18 +23,18 @@ module.exports = React.createClass({
       return '' !== b.comment
     }).map((b) => {
       const u = `${b.user.slice(0,2)}/${b.user}`
-      let c = null
+      let s = null
       if (bucomeHash[b.user]) {
-        c = <span>★{bucomeHash[b.user]}</span>
+        s = <span className="ceg__star">{bucomeHash[b.user]}</span>
       }
       const e = (
         <div key={b.user} className="ceg__line">
           <div className="ceg__avatar">
             <img src={`//cdn1.www.st-hatena.com/users/${u}/profile_l.gif`}/>
+            { s }
           </div>
           <div className="ceg__comment">
             <span>{b.comment}</span>
-            { c }
           </div>
         </div>
       )
