@@ -14,10 +14,12 @@ module.exports = React.createClass({
   switchRankingTab(ev) {
     ev.preventDefault()
     this.setState({tab: 'Ranking'})
+    $('.ceg__comments').scrollTop(0)
   },
   switchNewTab(ev) {
     ev.preventDefault()
     this.setState({tab: 'New'})
+    $('.ceg__comments').scrollTop(0)
   },
   toggleClose() {
     $('#chrome-extension-gaiyas').toggleClass('closed')
