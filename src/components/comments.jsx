@@ -15,8 +15,15 @@ module.exports = React.createClass({
     }
   },
   render() {
-    // const bms = this.props.store.hatena.bookmarks
-    const bms = this.props.store.hatena.ranking
+    let bms = this.props.store.hatena.bookmarks
+    switch (this.props.tab) {
+    case 'New':
+      bms = this.props.store.hatena.bookmarks
+      break
+    case 'Ranking':
+      bms = this.props.store.hatena.ranking
+      break
+    }
     const bucomeHash = this.props.store.bucome
     const comments = []
     bms.filter((b) => {
