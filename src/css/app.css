@@ -14,6 +14,7 @@
   word-break: break-all;
   font-family: "MS PGothic", sans-serif;
   color: #ddd;
+  line-height: 1;
   -webkit-font-smoothing: auto;
   font-feature-settings: "palt";
   transition: all 200ms 0s ease;
@@ -49,7 +50,7 @@
 
       .ceg__seg {
         flex: 1;
-        padding: 2px 0;
+        padding: 4px 0;
         text-align: center;
         color: #00a4de;
         text-decoration: none;
@@ -100,13 +101,13 @@
   }
 
   .ceg__cnt {
-    font-size: 16px;
-    color: #ff8080;
+    font-size: 14px;
+    color: rgb(255,102,102);
     font-weight: bold;
-    right: 0;
-    bottom: 0;
-    background-color: #ffe5e5;
-    padding: 2px 8px;
+    background-color: rgb(255,240,240);
+    padding: 3px 8px;
+    margin-right: 5px;
+    border-radius: 2px;
   }
 
   .ceg__line {
