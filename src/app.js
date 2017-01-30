@@ -48,11 +48,13 @@ $.ajax({
             store.bucome[b.user] = stars.length
             applyStarCountForRanking(b.user, stars.length)
             // console.log(store.hatena.ranking)
-            render(store)
           }
         })
         .always(() => {
           remain_cnt = remain_cnt - 1
+          if (remain_cnt == 0) {
+            render(store)
+          }
           // console.log(remain_cnt)
         })
     })
