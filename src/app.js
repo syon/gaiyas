@@ -19,8 +19,10 @@ let store = {
 let B = {}
 if (location.protocol === 'https:') {
   B.apiOrigin = 'https://b.hatena.ne.jp'
+  B.starOrigin = 'https://s.hatena.com'
 } else {
   B.apiOrigin = 'http://api.b.st-hatena.com'
+  B.starOrigin = 'http://s.hatena.com'
 }
 const target_url = location.href
 
@@ -38,7 +40,7 @@ $.ajax({
     data.bookmarks.forEach((b) => {
       const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
       $.ajax({
-        url: `http://s.hatena.com/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
+        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
         // dataType: 'jsonp', // Needs on development
         cache: false
       })
