@@ -53,7 +53,7 @@ $.ajax({
         .always(() => {
           remain_cnt = remain_cnt - 1
           if (remain_cnt == 0) {
-            render(store)
+            finishMakeRanking()
           }
           // console.log(remain_cnt)
         })
@@ -67,11 +67,17 @@ function matchUser(element) {
 function applyStarCountForRanking(user, star_cnt) {
   let b = store.hatena.ranking.find(matchUser, user)
   b.star = star_cnt
-  store.hatena.ranking.sort((a, b) => {
+}
+
+function finishMakeRanking() {
+  store.hatena.ranking = store.hatena.ranking.filter((b) => {
+    return b.star > 0
+  }).sort((a, b) => {
     if (a.star > b.star) return -1
     if (a.star < b.star) return 1
     return 0
   })
+  render(store)
 }
 
 function render(store) {
