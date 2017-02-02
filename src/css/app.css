@@ -125,7 +125,7 @@
     align-items: center;
     padding-right: 7px;
 
-    img {
+    .ceg__avatarimg {
       width: 16px;
       height: 16px;
     }
