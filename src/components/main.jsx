@@ -1,7 +1,7 @@
 /* @type */
 import React from 'react'
 import $ from 'jquery'
-import Comments from './comments.jsx'
+import CommentList from './CommentList.jsx'
 const T = React.PropTypes
 
 module.exports = React.createClass({
@@ -41,7 +41,7 @@ module.exports = React.createClass({
             <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
           </div>
         </div>
-        <Comments store={this.props.store} tab={this.state.tab} />
+        <CommentList store={this.props.store} tab={this.state.tab} />
       </div>
     )
   }
