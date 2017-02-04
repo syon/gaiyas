@@ -27,9 +27,8 @@ if (location.protocol === 'https:') {
 const target_url = location.href
 
 $.ajax({
-  url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url,
   // dataType: 'jsonp', // Needs on development
-  cache: false
+  url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url
 })
   .done(function(data) {
     // console.log(data)
@@ -40,9 +39,8 @@ $.ajax({
     data.bookmarks.forEach((b) => {
       const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
       $.ajax({
-        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
         // dataType: 'jsonp', // Needs on development
-        cache: false
+        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`
       })
         .done((data) => {
           if (data.entries.length > 0) {
