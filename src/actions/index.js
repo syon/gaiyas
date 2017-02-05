@@ -22,10 +22,10 @@ function receivePosts(data) {
 }
 
 let theRanking = []
+let bucome = {}
 
 function makeRanking(dispatch, data) {
   theRanking = Object.assign([], data.bookmarks)
-  let bucome = {}
   let remain_cnt = data.bookmarks.length
   data.bookmarks.forEach((b) => {
     const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
@@ -70,7 +70,8 @@ function finishMakeRanking(dispatch) {
   })
   dispatch({
     type: 'MAKE_RANKING',
-    data: theRanking
+    ranking: theRanking,
+    bucome: bucome
   })
 }
 

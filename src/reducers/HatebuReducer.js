@@ -16,7 +16,8 @@ const hatebu = (state = initialState, action) => {
     })
   case 'MAKE_RANKING':
     return Object.assign({}, state, {
-      ranking: action.data
+      ranking: action.ranking,
+      bucome: action.bucome
     })
   default:
     return state
