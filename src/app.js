@@ -1,12 +1,22 @@
 /* @type */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import $ from 'jquery'
-import moment from 'moment'
-import Main from './components/main.jsx'
+import { Provider } from 'react-redux'
+import { fetchPosts } from './actions'
+// import $ from 'jquery'
+// import moment from 'moment'
+import Main from './components/Main.jsx'
+import configureStore from './store/configureStore'
+
+const store = configureStore
 
 import './css/app.css'
 
+store.dispatch(fetchPosts()).then(() =>
+  console.log('store.dispatch(fetchPosts())', store.getState())
+)
+
+/*
 let store = {
   hatena: {
     bookmarks: [],
@@ -27,7 +37,7 @@ if (location.protocol === 'https:') {
 const target_url = location.href
 
 $.ajax({
-  // dataType: 'jsonp', // Needs on development
+  dataType: 'jsonp', // Needs on development
   url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url
 })
   .done(function(data) {
@@ -39,7 +49,7 @@ $.ajax({
     data.bookmarks.forEach((b) => {
       const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
       $.ajax({
-        // dataType: 'jsonp', // Needs on development
+        dataType: 'jsonp', // Needs on development
         url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`
       })
         .done((data) => {
@@ -79,12 +89,11 @@ function finishMakeRanking() {
   })
   render(store)
 }
+*/
 
-function render(store) {
-  ReactDOM.render(
-    <Main store={store} />,
-    document.getElementById('chrome-extension-gaiyas')
-  )
-}
-
-render(store)
+ReactDOM.render(
+  <Provider store={store}>
+    <Main />
+  </Provider>,
+  document.getElementById('chrome-extension-gaiyas')
+)

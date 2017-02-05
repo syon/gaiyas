@@ -1,33 +1,32 @@
 /* @type */
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import $ from 'jquery'
 import CommentList from './CommentList.jsx'
-const T = React.PropTypes
 
-module.exports = React.createClass({
-  propTypes: {
-    store: T.object.isRequired
-  },
-  getInitialState() {
-    return {tab: 'New'}
-  },
+class Main extends Component {
+
   switchRankingTab(ev) {
     ev.preventDefault()
     this.setState({tab: 'Ranking'})
     $('.ceg__comments').scrollTop(0)
-  },
+  }
+
   switchNewTab(ev) {
     ev.preventDefault()
     this.setState({tab: 'New'})
     $('.ceg__comments').scrollTop(0)
-  },
+  }
+
   toggleClose() {
     $('#chrome-extension-gaiyas').toggleClass('closed')
-  },
+  }
+
   render() {
-    const h = this.props.store.hatena
-    let activeR = (this.state.tab === 'Ranking' ? 'ceg__active' : '')
-    let activeN = (this.state.tab === 'New'     ? 'ceg__active' : '')
+    const { hatebu, tab } = this.props
+    const h = hatebu
+    let activeR = (tab === 'Ranking' ? 'ceg__active' : '')
+    let activeN = (tab === 'New'     ? 'ceg__active' : '')
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
@@ -41,8 +40,22 @@ module.exports = React.createClass({
             <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
           </div>
         </div>
-        <CommentList store={this.props.store} tab={this.state.tab} />
+        <CommentList store={hatebu} tab={tab} />
       </div>
     )
   }
-})
+}
+
+Main.propTypes = {
+  hatebu: PropTypes.object.isRequired,
+  tab: PropTypes.string.isRequired
+}
+
+function select(state) {
+  return {
+    hatebu: state.hatebu,
+    tab: state.tab
+  }
+}
+
+export default connect(select)(Main)
