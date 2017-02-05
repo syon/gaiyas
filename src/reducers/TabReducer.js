@@ -2,9 +2,9 @@ const initialState = 'New'
 
 const tab = (state = initialState, action) => {
   switch (action.type) {
-  case 'Ranking':
+  case 'TAB_RANKING':
     return 'Ranking'
-  case 'New':
+  case 'TAB_NEW':
     return 'New'
   default:
     return state

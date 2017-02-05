@@ -6,15 +6,21 @@ import CommentList from './CommentList.jsx'
 
 class Main extends Component {
 
+  constructor(){
+    super()
+    this.switchRankingTab = this.switchRankingTab.bind(this)
+    this.switchNewTab = this.switchNewTab.bind(this)
+  }
+
   switchRankingTab(ev) {
     ev.preventDefault()
-    this.setState({tab: 'Ranking'})
+    this.props.dispatch({ type: 'TAB_RANKING' })
     $('.ceg__comments').scrollTop(0)
   }
 
   switchNewTab(ev) {
     ev.preventDefault()
-    this.setState({tab: 'New'})
+    this.props.dispatch({ type: 'TAB_NEW' })
     $('.ceg__comments').scrollTop(0)
   }
 
