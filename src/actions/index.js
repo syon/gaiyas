@@ -20,6 +20,13 @@ function receivePosts(data) {
   }
 }
 
+function makeRanking(data) {
+  return {
+    type: 'MAKE_RANKING',
+    data: data
+  }
+}
+
 export function fetchPosts() {
   return function (dispatch) {
     dispatch({ type: 'REQUEST_POSTS' })
@@ -29,6 +36,7 @@ export function fetchPosts() {
     })
     .done(function(data) {
       dispatch(receivePosts(data))
+      dispatch(makeRanking(data))
     })
   }
 }

@@ -34,7 +34,7 @@ module.exports = React.createClass({
       bms = this.props.store.hatena.bookmarks
       break
     case 'Ranking':
-      bms = this.props.store.hatena.ranking.slice(0, 20)
+      bms = this.props.store.ranking.slice(0, 20)
       break
     }
     const comments = []

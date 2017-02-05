@@ -1,9 +1,9 @@
 const initialState = {
   hatena: {
     bookmarks: [],
-    ranking: [],
     count: ''
   },
+  ranking: [],
   bucome: []
 }
 
@@ -13,6 +13,10 @@ const hatebu = (state = initialState, action) => {
   case 'RECEIVE_POSTS':
     return Object.assign({}, state, {
       hatena: action.data
+    })
+  case 'MAKE_RANKING':
+    return Object.assign({}, state, {
+      ranking: action.data.bookmarks
     })
   default:
     return state
