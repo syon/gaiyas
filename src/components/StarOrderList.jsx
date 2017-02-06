@@ -1,5 +1,6 @@
 /* @type */
 import React from 'react'
+import ReactDOM from 'react-dom'
 import Comment from './Comment.jsx'
 const T = React.PropTypes
 
@@ -10,6 +11,14 @@ module.exports = React.createClass({
   },
   getInitialState() {
     return { pos: 0 }
+  },
+  componentDidMount() {
+    const tcl = ReactDOM.findDOMNode(this.refs.RefStarOrderList)
+    if (tcl) {
+      tcl.onscroll = (ev) => {
+        this.setState({ pos: ev.target.scrollTop })
+      }
+    }
   },
   render() {
     let bms = this.props.store.ranking.slice(0, 20)
@@ -24,7 +33,7 @@ module.exports = React.createClass({
     })
     this.props.autoControl(comments.length)
     return (
-      <div className="ceg__comments" ref="TheCommentList" data-pos={this.state.pos}>
+      <div className="ceg__comments" ref="RefStarOrderList" data-pos={this.state.pos}>
         {comments}
       </div>
     )

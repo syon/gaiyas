@@ -33,6 +33,10 @@ class Main extends Component {
     const h = hatebu
     let activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     let activeN = (tab === 'New'     ? 'ceg__active' : '')
+    let segR = <span className="ceg__seg">Ranking...</span>
+    if (hatebu.ranking.length > 0) {
+      segR = <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
+    }
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
@@ -42,7 +46,7 @@ class Main extends Component {
         </div>
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
-            <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
+            { segR }
             <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
           </div>
         </div>
@@ -60,7 +64,8 @@ Main.propTypes = {
 function select(state) {
   return {
     hatebu: state.hatebu,
-    tab: state.tab
+    tab: state.tab,
+    isRankingReady: state.isRankingReady
   }
 }
 
