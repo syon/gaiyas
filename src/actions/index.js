@@ -30,7 +30,7 @@ function makeRanking(dispatch, data) {
   data.bookmarks.forEach((b) => {
     const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
     $.ajax({
-      dataType: 'jsonp', // Needs on development
+      // dataType: 'jsonp', // Needs on development
       url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`
     })
       .done((data) => {
@@ -79,7 +79,7 @@ export function fetchPosts() {
   return function (dispatch) {
     dispatch({ type: 'REQUEST_POSTS' })
     return $.ajax({
-      dataType: 'jsonp', // Needs on development
+      // dataType: 'jsonp', // Needs on development
       url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url
     })
     .done(function(data) {

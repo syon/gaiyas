@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
-import CommentList from './CommentList.jsx'
+import CommentBox from './CommentBox.jsx'
 
 class Main extends Component {
 
@@ -46,7 +46,7 @@ class Main extends Component {
             <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
           </div>
         </div>
-        <CommentList store={hatebu} tab={tab} />
+        <CommentBox store={hatebu} tab={tab} />
       </div>
     )
   }

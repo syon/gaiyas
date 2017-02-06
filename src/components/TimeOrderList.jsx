@@ -1,42 +1,27 @@
 /* @type */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import $ from 'jquery'
 import Comment from './Comment.jsx'
 const T = React.PropTypes
 
 module.exports = React.createClass({
   propTypes: {
-    store: T.object.isRequired
+    store: T.object.isRequired,
+    autoControl: T.func.isRequired
   },
   getInitialState() {
     return { pos: 0 }
   },
   componentDidMount() {
-    const tcl = ReactDOM.findDOMNode(this.refs.TheCommentList)
+    const tcl = ReactDOM.findDOMNode(this.refs.RefTimeOrderList)
     if (tcl) {
       tcl.onscroll = (ev) => {
         this.setState({ pos: ev.target.scrollTop })
       }
     }
   },
-  autoControl(commentCount) {
-    if (commentCount > 0 && window.innerWidth > 1500) {
-      $('#chrome-extension-gaiyas').removeClass('closed')
-    } else {
-      $('#chrome-extension-gaiyas').addClass('closed')
-    }
-  },
   render() {
     let bms = this.props.store.hatena.bookmarks
-    switch (this.props.tab) {
-    case 'New':
-      bms = this.props.store.hatena.bookmarks
-      break
-    case 'Ranking':
-      bms = this.props.store.ranking.slice(0, 20)
-      break
-    }
     const comments = []
     bms.filter((b) => {
       return '' !== b.comment
@@ -46,9 +31,9 @@ module.exports = React.createClass({
       )
       comments.push(e)
     })
-    this.autoControl(comments.length)
+    this.props.autoControl(comments.length)
     return (
-      <div className="ceg__comments" ref="TheCommentList" data-pos={this.state.pos}>
+      <div className="ceg__comments" ref="RefTimeOrderList" data-pos={this.state.pos}>
         {comments}
       </div>
     )
