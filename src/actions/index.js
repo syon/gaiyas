@@ -16,31 +16,33 @@ const target_url = location.href
 let theRanking = []
 let bucome = {}
 
-function makeRanking(dispatch, data) {
-  theRanking = Object.assign([], data.bookmarks)
-  let remain_cnt = data.bookmarks.length
-  data.bookmarks.forEach((b) => {
-    const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
-    $.ajax({
-      // dataType: 'jsonp', // Needs on development
-      url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`
+export function makeRanking(data) {
+  return function (dispatch) {
+    theRanking = Object.assign([], data.bookmarks)
+    let remain_cnt = data.bookmarks.length
+    data.bookmarks.forEach((b) => {
+      const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
+      $.ajax({
+        // dataType: 'jsonp', // Needs on development
+        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`
+      })
+        .done((data) => {
+          if (data.entries.length > 0) {
+            const stars = data.entries[0].stars
+            bucome[b.user] = stars.length
+            applyStarCountForRanking(b.user, stars.length)
+            // console.log(theRanking)
+          }
+        })
+        .always(() => {
+          remain_cnt = remain_cnt - 1
+          if (remain_cnt == 0) {
+            finishMakeRanking(dispatch)
+          }
+          console.log(remain_cnt)
+        })
     })
-      .done((data) => {
-        if (data.entries.length > 0) {
-          const stars = data.entries[0].stars
-          bucome[b.user] = stars.length
-          applyStarCountForRanking(b.user, stars.length)
-          // console.log(theRanking)
-        }
-      })
-      .always(() => {
-        remain_cnt = remain_cnt - 1
-        if (remain_cnt == 0) {
-          finishMakeRanking(dispatch)
-        }
-        // console.log(remain_cnt)
-      })
-  })
+  }
 }
 
 function matchUser(element) {
@@ -75,7 +77,7 @@ export function fetchPosts() {
     })
     .done(function(data) {
       dispatch({ type: 'RECEIVED_1ST', data: data })
-      makeRanking(dispatch, data)
+      // makeRanking(dispatch, data)
     })
   }
 }

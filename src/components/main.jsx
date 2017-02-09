@@ -3,13 +3,20 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
 import CommentBox from './CommentBox.jsx'
+import { makeRanking } from '../actions'
 
 class Main extends Component {
 
   constructor(){
     super()
+    this.pleaseMore = this.pleaseMore.bind(this)
     this.switchRankingTab = this.switchRankingTab.bind(this)
     this.switchNewTab = this.switchNewTab.bind(this)
+  }
+
+  pleaseMore() {
+    this.props.dispatch({ type: 'GO_AHEAD' })
+    this.props.dispatch(makeRanking(this.props.hatebu.hatena))
   }
 
   switchRankingTab(ev) {
@@ -33,9 +40,11 @@ class Main extends Component {
     const h = hatebu
     let activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     let activeN = (tab === 'New'     ? 'ceg__active' : '')
-    let segR = <span className="ceg__seg">Ranking...</span>
+    let segR = null
     if (hatebu.ranking.length > 0) {
       segR = <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
+    } else {
+      segR = <span className="ceg__seg" onClick={this.pleaseMore}>Ranking</span>
     }
     return (
       <div className="ceg__wrap">
@@ -65,7 +74,7 @@ function select(state) {
   return {
     hatebu: state.hatebu,
     tab: state.tab,
-    isRankingReady: state.isRankingReady
+    waiting: state.waiting
   }
 }
 
