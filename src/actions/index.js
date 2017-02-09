@@ -69,13 +69,12 @@ function finishMakeRanking(dispatch) {
 
 export function fetchPosts() {
   return function (dispatch) {
-    dispatch({ type: 'REQUEST_POSTS' })
     return $.ajax({
       // dataType: 'jsonp', // Needs on development
       url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url
     })
     .done(function(data) {
-      dispatch({ type: 'RECEIVE_POSTS', data: data })
+      dispatch({ type: 'RECEIVED_1ST', data: data })
       makeRanking(dispatch, data)
     })
   }

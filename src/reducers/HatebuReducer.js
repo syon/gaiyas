@@ -10,7 +10,7 @@ const initialState = {
 const hatebu = (state = initialState, action) => {
   // console.log("HatebuReducer is called.", state, action)
   switch (action.type) {
-  case 'RECEIVE_POSTS':
+  case 'RECEIVED_1ST':
     return Object.assign({}, state, {
       hatena: action.data
     })
