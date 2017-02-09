@@ -13,14 +13,6 @@ if (location.protocol === 'https:') {
 }
 const target_url = location.href
 
-function receivePosts(data) {
-  return {
-    type: 'RECEIVE_POSTS',
-    data: data,
-    receivedAt: Date.now()
-  }
-}
-
 let theRanking = []
 let bucome = {}
 
@@ -83,7 +75,7 @@ export function fetchPosts() {
       url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url
     })
     .done(function(data) {
-      dispatch(receivePosts(data))
+      dispatch({ type: 'RECEIVE_POSTS', data: data })
       makeRanking(dispatch, data)
     })
   }
