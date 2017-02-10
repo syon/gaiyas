@@ -27,15 +27,12 @@ class StarOrderList extends Component {
 
   render() {
     const { hatebu, ranking, autoControl } = this.props
-    const bms = ranking.slice(0, 20)
-    const comments = []
-    bms.filter((b) => {
+    const comments = ranking.slice(0, 20).filter((b) => {
       return b.comment !== ''
     }).map((b) => {
-      const e = (
+      return (
         <Comment key={b.user} bookmark={b} bucome={hatebu.bucome} pos={this.state.pos} />
       )
-      comments.push(e)
     })
     autoControl(comments.length)
     return (

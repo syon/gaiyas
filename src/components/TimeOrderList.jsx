@@ -25,15 +25,18 @@ class TimeOrderList extends Component {
   }
 
   render() {
-    const bms = this.props.hatebu.hatena.bookmarks
-    const comments = []
-    bms.filter((b) => {
-      return '' !== b.comment
+    const { hatebu } = this.props
+    const comments = hatebu.hatena.bookmarks.filter((b) => {
+      return b.comment !== ''
     }).map((b) => {
-      const e = (
-        <Comment key={b.user} bookmark={b} bucome={this.props.hatebu.bucome} pos={this.state.pos} />
+      return (
+        <Comment
+          key={b.user}
+          bookmark={b}
+          bucome={this.props.hatebu.bucome}
+          pos={this.state.pos}
+        />
       )
-      comments.push(e)
     })
     this.props.autoControl(comments.length)
     return (
