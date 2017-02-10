@@ -1,6 +1,9 @@
 {
   "name": "gaiyas",
   "private": true,
+  "description": "外野たち",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
   "scripts": {
     "start": "webpack -w -d",
     "build": "webpack",
@@ -47,5 +50,16 @@
       "es2015",
       "react"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syon/gaiyas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syon/gaiyas/issues"
+  },
+  "homepage": "https://github.com/syon/gaiyas#readme"
 }
