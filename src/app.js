@@ -5,10 +5,9 @@ import { Provider } from 'react-redux'
 import { fetchPosts, makeRanking } from './actions'
 import Main from './components/Main.jsx'
 import configureStore from './store/configureStore'
+import './css/app.css'
 
 const store = configureStore
-
-import './css/app.css'
 
 store.dispatch(fetchPosts()).then(() => {
   // console.log('store.dispatch(fetchPosts())', store.getState())
