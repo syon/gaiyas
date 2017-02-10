@@ -25,6 +25,7 @@
     "import/extensions": [2, "never", { "jsx": "always" }],
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
+    "react/no-find-dom-node": "off",
     "react/no-string-refs": "off",
     "react/forbid-prop-types": [0]
   }

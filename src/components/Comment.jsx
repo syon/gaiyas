@@ -9,6 +9,10 @@ class Comment extends Component {
   }
 
   componentDidMount() {
+    this.onMount()
+  }
+
+  onMount() {
     const tc = ReactDOM.findDOMNode(this.refs.TheComment)
     this.setState({ p: tc.offsetTop })
   }
@@ -16,7 +20,7 @@ class Comment extends Component {
   render() {
     const b = this.props.bookmark
     const bucomeHash = this.props.bucome
-    const u = `${b.user.slice(0,2)}/${b.user}`
+    const u = `${b.user.slice(0, 2)}/${b.user}`
     let s = null
     if (bucomeHash && bucomeHash[b.user]) {
       s = <span className="ceg__star">{bucomeHash[b.user]}</span>
@@ -31,7 +35,7 @@ class Comment extends Component {
     return (
       <div key={b.user} className="ceg__line" ref="TheComment">
         <div className="ceg__avatar">
-          <img className="ceg__avatarimg" src={imgurl}/>
+          <img className="ceg__avatarimg" src={imgurl} alt={b.user} />
           { s }
         </div>
         <div className="ceg__comment">
@@ -43,8 +47,8 @@ class Comment extends Component {
 }
 
 Comment.propTypes = {
-  store: PropTypes.object.isRequired,
   bookmark: PropTypes.object.isRequired,
+  bucome: PropTypes.object.isRequired,
   pos: PropTypes.number.isRequired,
 }
 
