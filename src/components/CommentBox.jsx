@@ -22,17 +22,21 @@ module.exports = React.createClass({
     }
   },
   render() {
+    let waiting = this.props.waiting
     let theList = null
+    let progress = null
     switch (this.props.tab) {
     case 'New':
       theList = <TimeOrderList store={this.props.store} autoControl={this.autoControl} />
       break
     case 'Ranking':
       theList = <StarOrderList store={this.props.store} autoControl={this.autoControl} />
+      progress = waiting.progressRate < 1 ? <div>{ waiting.progressRate }</div> : null
       break
     }
     return (
       <div className="ceg__commentbox" ref="TheCommentList">
+        { progress }
         { theList }
       </div>
     )

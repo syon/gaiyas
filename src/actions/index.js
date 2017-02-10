@@ -39,6 +39,7 @@ export function makeRanking(data) {
           if (remain_cnt == 0) {
             finishMakeRanking(dispatch)
           }
+          dispatch({ type: 'UPD_PROGRESS', remain: remain_cnt, all: data.bookmarks.length })
           console.log(remain_cnt)
         })
     })

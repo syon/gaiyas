@@ -39,7 +39,7 @@ class Main extends Component {
   }
 
   render() {
-    const { hatebu, tab } = this.props
+    const { hatebu, tab, waiting } = this.props
     const h = hatebu
     let activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     let activeN = (tab === 'New'     ? 'ceg__active' : '')
@@ -56,7 +56,7 @@ class Main extends Component {
             <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
           </div>
         </div>
-        <CommentBox store={hatebu} tab={tab} />
+        <CommentBox store={hatebu} tab={tab} waiting={waiting} />
       </div>
     )
   }
