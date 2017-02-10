@@ -53,10 +53,12 @@
         flex: 1;
         padding: 4px 0;
         text-align: center;
+        font-size: 13px;
         color: #00a4de;
         text-decoration: none;
         border: 1px solid #00a4de;
         border-right: 0;
+        background-color: transparent;
         cursor: pointer;
 
         &:hover {
