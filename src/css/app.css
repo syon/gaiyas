@@ -27,10 +27,10 @@
       position: relative;
     }
     .ceg__cnt {
-      top: 22px;
+      top: 24px;
       right: 245px;
       position: relative;
-      font-size: 12px;
+      font-size: 16px;
       padding: 2px;
       border-radius: 0;
     }
@@ -130,6 +130,7 @@
     padding: 3px 8px;
     margin-right: 5px;
     border-radius: 2px;
+    right: 0;
     transition: all 200ms 0s ease;
   }
 
