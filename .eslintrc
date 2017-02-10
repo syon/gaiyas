@@ -18,13 +18,14 @@
     "react"
   ],
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "linebreak-style": ["error", "unix" ],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
     "import/extensions": [2, "never", { "jsx": "always" }],
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
+    "react/no-string-refs": "off",
     "react/forbid-prop-types": [0]
   }
 }

@@ -7,7 +7,11 @@ import { makeRanking } from '../actions'
 
 class Main extends Component {
 
-  constructor(){
+  static toggleClose() {
+    $('#chrome-extension-gaiyas').toggleClass('closed')
+  }
+
+  constructor() {
     super()
     this.pleaseMore = this.pleaseMore.bind(this)
     this.switchRankingTab = this.switchRankingTab.bind(this)
@@ -34,15 +38,11 @@ class Main extends Component {
     $('.ceg__comments').scrollTop(0)
   }
 
-  toggleClose() {
-    $('#chrome-extension-gaiyas').toggleClass('closed')
-  }
-
   render() {
     const { hatebu, tab, waiting } = this.props
     const h = hatebu
-    let activeR = (tab === 'Ranking' ? 'ceg__active' : '')
-    let activeN = (tab === 'New'     ? 'ceg__active' : '')
+    const activeR = (tab === 'Ranking' ? 'ceg__active' : '')
+    const activeN = (tab === 'New' ? 'ceg__active' : '')
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
@@ -52,8 +52,8 @@ class Main extends Component {
         </div>
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
-            <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
-            <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
+            <button className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</button>
+            <button className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</button>
           </div>
         </div>
         <CommentBox store={hatebu} tab={tab} waiting={waiting} />
@@ -63,6 +63,7 @@ class Main extends Component {
 }
 
 Main.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   hatebu: PropTypes.object.isRequired,
   tab: PropTypes.string.isRequired,
   waiting: PropTypes.object.isRequired,
@@ -72,7 +73,7 @@ function select(state) {
   return {
     hatebu: state.hatebu,
     tab: state.tab,
-    waiting: state.waiting
+    waiting: state.waiting,
   }
 }
 
