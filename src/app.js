@@ -13,7 +13,7 @@ import './css/app.css'
 store.dispatch(fetchPosts()).then(() => {
   // console.log('store.dispatch(fetchPosts())', store.getState())
   const state = store.getState()
-  if (!state.waiting) {
+  if (!state.waiting.isWaiting) {
     store.dispatch(makeRanking(state.hatebu.hatena))
   } else {
     console.log('Waiting...', store.getState())

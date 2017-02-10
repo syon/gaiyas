@@ -1,11 +1,15 @@
-const initialState = true
+const initialState = { isWaiting: true, progressRate: 0 }
 
 const waiting = (state = initialState, action) => {
   switch (action.type) {
   case 'RECEIVED_1ST':
-    return (action.data.count >= 200)
+    return Object.assign({}, state, {
+      isWaiting: (action.data.count >= 200)
+    })
   case 'GO_AHEAD':
-    return false
+    return Object.assign({}, state, {
+      isWaiting: false
+    })
   default:
     return state
   }

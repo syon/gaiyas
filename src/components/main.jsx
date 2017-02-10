@@ -15,7 +15,7 @@ class Main extends Component {
   }
 
   pleaseMore() {
-    if (this.props.waiting) {
+    if (this.props.waiting.isWaiting) {
       this.props.dispatch({ type: 'GO_AHEAD' })
       this.props.dispatch(makeRanking(this.props.hatebu.hatena))
     }
@@ -65,7 +65,7 @@ class Main extends Component {
 Main.propTypes = {
   hatebu: PropTypes.object.isRequired,
   tab: PropTypes.string.isRequired,
-  waiting: PropTypes.bool.isRequired
+  waiting: PropTypes.object.isRequired
 }
 
 function select(state) {
