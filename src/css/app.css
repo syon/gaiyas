@@ -196,10 +196,21 @@
   }
 
   .ceg__comment {
-    flex: 1;
     line-height: 1.4;
     padding: 0 8px 10px 0;
     border-bottom: 1px solid $SeparatorColor;
+  }
+
+  .ceg__progressbar {
+    display: flex;
+    width: 100%;
+    height: 10px;
+    margin: 15px;
+    border: 1px solid #fff;
+
+    .ceg__progressbar-inner {
+      background-color: #fff;
+    }
   }
 
 }

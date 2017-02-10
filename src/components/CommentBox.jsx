@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import $ from 'jquery'
 import TimeOrderList from './TimeOrderList.jsx'
 import StarOrderList from './StarOrderList.jsx'
+import ProgressBar from './ProgressBar.jsx'
 
 class CommentBox extends Component {
 
@@ -36,7 +37,7 @@ class CommentBox extends Component {
         break
       case 'Ranking':
         theList = <StarOrderList hatebu={this.props.hatebu} ranking={this.props.hatebu.ranking} autoControl={this.autoControl} />
-        progress = waiting.progressRate < 1 ? <div>{ waiting.progressRate }</div> : null
+        progress = waiting.progressRate < 1 ? <ProgressBar rate={waiting.progressRate} /> : null
         break
       default:
     }
