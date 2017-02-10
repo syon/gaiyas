@@ -7,6 +7,13 @@ import { makeRanking } from '../actions'
 
 class Main extends Component {
 
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    hatebu: PropTypes.object.isRequired,
+    tab: PropTypes.string.isRequired,
+    waiting: PropTypes.object.isRequired,
+  }
+
   static toggleClose() {
     $('#chrome-extension-gaiyas').toggleClass('closed')
   }
@@ -60,13 +67,6 @@ class Main extends Component {
       </div>
     )
   }
-}
-
-Main.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  hatebu: PropTypes.object.isRequired,
-  tab: PropTypes.string.isRequired,
-  waiting: PropTypes.object.isRequired,
 }
 
 function select(state) {

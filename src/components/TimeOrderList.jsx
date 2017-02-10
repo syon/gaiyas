@@ -4,6 +4,12 @@ import ReactDOM from 'react-dom'
 import Comment from './Comment.jsx'
 
 class TimeOrderList extends Component {
+
+  static propTypes = {
+    hatebu: PropTypes.object.isRequired,
+    autoControl: PropTypes.func.isRequired,
+  }
+
   constructor() {
     super()
     this.state = { pos: 0 }
@@ -36,11 +42,6 @@ class TimeOrderList extends Component {
       </div>
     )
   }
-}
-
-TimeOrderList.propTypes = {
-  hatebu: PropTypes.object.isRequired,
-  autoControl: PropTypes.func.isRequired,
 }
 
 export default TimeOrderList

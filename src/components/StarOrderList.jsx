@@ -4,6 +4,13 @@ import ReactDOM from 'react-dom'
 import Comment from './Comment.jsx'
 
 class StarOrderList extends Component {
+
+  static propTypes = {
+    hatebu: PropTypes.object.isRequired,
+    ranking: PropTypes.object.isRequired,
+    autoControl: PropTypes.func.isRequired,
+  }
+
   constructor() {
     super()
     this.state = { pos: 0 }
@@ -37,12 +44,6 @@ class StarOrderList extends Component {
       </div>
     )
   }
-}
-
-StarOrderList.propTypes = {
-  hatebu: PropTypes.object.isRequired,
-  ranking: PropTypes.object.isRequired,
-  autoControl: PropTypes.func.isRequired,
 }
 
 export default StarOrderList

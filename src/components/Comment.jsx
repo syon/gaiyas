@@ -4,6 +4,13 @@ import ReactDOM from 'react-dom'
 import moment from 'moment'
 
 class Comment extends Component {
+
+  static propTypes = {
+    bookmark: PropTypes.object.isRequired,
+    bucome: PropTypes.object.isRequired,
+    pos: PropTypes.number.isRequired,
+  }
+
   constructor() {
     super()
     this.state = { p: 9999, overred: false }
@@ -56,12 +63,6 @@ class Comment extends Component {
       </div>
     )
   }
-}
-
-Comment.propTypes = {
-  bookmark: PropTypes.object.isRequired,
-  bucome: PropTypes.object.isRequired,
-  pos: PropTypes.number.isRequired,
 }
 
 export default Comment

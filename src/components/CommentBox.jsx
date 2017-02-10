@@ -5,6 +5,13 @@ import TimeOrderList from './TimeOrderList.jsx'
 import StarOrderList from './StarOrderList.jsx'
 
 class CommentBox extends Component {
+
+  static propTypes = {
+    hatebu: PropTypes.object.isRequired,
+    tab: PropTypes.string.isRequired,
+    waiting: PropTypes.object.isRequired,
+  }
+
   constructor() {
     super()
     this.autoControl = this.autoControl.bind(this)
@@ -40,12 +47,6 @@ class CommentBox extends Component {
       </div>
     )
   }
-}
-
-CommentBox.propTypes = {
-  hatebu: PropTypes.object.isRequired,
-  tab: PropTypes.string.isRequired,
-  waiting: PropTypes.object.isRequired,
 }
 
 export default CommentBox
