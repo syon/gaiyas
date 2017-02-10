@@ -65,7 +65,7 @@ class Main extends Component {
 Main.propTypes = {
   hatebu: PropTypes.object.isRequired,
   tab: PropTypes.string.isRequired,
-  waiting: PropTypes.object.isRequired
+  waiting: PropTypes.object.isRequired,
 }
 
 function select(state) {
