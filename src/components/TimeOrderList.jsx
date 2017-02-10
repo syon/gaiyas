@@ -1,17 +1,14 @@
 /* @type */
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import Comment from './Comment.jsx'
-const T = React.PropTypes
 
-module.exports = React.createClass({
-  propTypes: {
-    store: T.object.isRequired,
-    autoControl: T.func.isRequired
-  },
-  getInitialState() {
-    return { pos: 0 }
-  },
+class TimeOrderList extends Component {
+  constructor() {
+    super()
+    this.state = { pos: 0 }
+  }
+
   componentDidMount() {
     const tcl = ReactDOM.findDOMNode(this.refs.RefTimeOrderList)
     if (tcl) {
@@ -19,9 +16,10 @@ module.exports = React.createClass({
         this.setState({ pos: ev.target.scrollTop })
       }
     }
-  },
+  }
+
   render() {
-    let bms = this.props.hatebu.hatena.bookmarks
+    const bms = this.props.hatebu.hatena.bookmarks
     const comments = []
     bms.filter((b) => {
       return '' !== b.comment
@@ -38,4 +36,11 @@ module.exports = React.createClass({
       </div>
     )
   }
-})
+}
+
+TimeOrderList.propTypes = {
+  hatebu: PropTypes.object.isRequired,
+  autoControl: PropTypes.func.isRequired,
+}
+
+export default TimeOrderList

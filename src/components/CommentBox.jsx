@@ -43,7 +43,6 @@ class CommentBox extends Component {
 }
 
 CommentBox.propTypes = {
-  store: PropTypes.object.isRequired,
   hatebu: PropTypes.object.isRequired,
   tab: PropTypes.string.isRequired,
   waiting: PropTypes.object.isRequired,
