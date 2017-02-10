@@ -5,8 +5,10 @@ import TimeOrderList from './TimeOrderList.jsx'
 import StarOrderList from './StarOrderList.jsx'
 
 class CommentBox extends Component {
-  getInitialState() {
-    return { pos: 0 }
+  constructor() {
+    super()
+    this.autoControl = this.autoControl.bind(this)
+    this.state = { pos: 0 }
   }
 
   autoControl(commentCount) {
@@ -23,10 +25,10 @@ class CommentBox extends Component {
     let progress = null
     switch (this.props.tab) {
       case 'New':
-        theList = <TimeOrderList store={this.props.store} autoControl={this.autoControl} />
+        theList = <TimeOrderList hatebu={this.props.hatebu} autoControl={this.autoControl} />
         break
       case 'Ranking':
-        theList = <StarOrderList store={this.props.store} autoControl={this.autoControl} />
+        theList = <StarOrderList hatebu={this.props.hatebu} ranking={this.props.hatebu.ranking} autoControl={this.autoControl} />
         progress = waiting.progressRate < 1 ? <div>{ waiting.progressRate }</div> : null
         break
       default:
@@ -42,6 +44,7 @@ class CommentBox extends Component {
 
 CommentBox.propTypes = {
   store: PropTypes.object.isRequired,
+  hatebu: PropTypes.object.isRequired,
   tab: PropTypes.string.isRequired,
   waiting: PropTypes.object.isRequired,
 }

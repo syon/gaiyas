@@ -21,13 +21,13 @@ module.exports = React.createClass({
     }
   },
   render() {
-    let bms = this.props.store.hatena.bookmarks
+    let bms = this.props.hatebu.hatena.bookmarks
     const comments = []
     bms.filter((b) => {
       return '' !== b.comment
     }).map((b) => {
       const e = (
-        <Comment key={b.user} bookmark={b} store={this.props.store} pos={this.state.pos} />
+        <Comment key={b.user} bookmark={b} bucome={this.props.hatebu.bucome} pos={this.state.pos} />
       )
       comments.push(e)
     })
