@@ -6,5 +6,5 @@ import waitingReducer from './WaitingReducer'
 export default combineReducers({
   hatebu: hatebuReducer,
   tab: tabReducer,
-  waiting: waitingReducer
+  waiting: waitingReducer,
 })

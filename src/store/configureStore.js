@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk'
 import rootReducer from '../reducers'
 
 const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware
+  thunkMiddleware,
 )(createStore)
 
 const configureStore = createStoreWithMiddleware(rootReducer)

@@ -4,15 +4,15 @@ const waiting = (state = initialState, action) => {
   switch (action.type) {
   case 'RECEIVED_1ST':
     return Object.assign({}, state, {
-      isWaiting: (action.data.count >= 200)
+      isWaiting: (action.data.count >= 200),
     })
   case 'UPD_PROGRESS':
     return Object.assign({}, state, {
-      progressRate: 1 - (action.remain / action.all)
+      progressRate: 1 - (action.remain / action.all),
     })
   case 'GO_AHEAD':
     return Object.assign({}, state, {
-      isWaiting: false
+      isWaiting: false,
     })
   default:
     return state

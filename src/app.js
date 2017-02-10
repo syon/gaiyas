@@ -24,5 +24,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Main />
   </Provider>,
-  document.getElementById('chrome-extension-gaiyas')
+  document.getElementById('chrome-extension-gaiyas'),
 )

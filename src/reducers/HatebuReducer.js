@@ -1,10 +1,10 @@
 const initialState = {
   hatena: {
     bookmarks: [],
-    count: ''
+    count: '',
   },
   ranking: [],
-  bucome: []
+  bucome: [],
 }
 
 const hatebu = (state = initialState, action) => {
@@ -12,12 +12,12 @@ const hatebu = (state = initialState, action) => {
   switch (action.type) {
   case 'RECEIVED_1ST':
     return Object.assign({}, state, {
-      hatena: action.data
+      hatena: action.data,
     })
   case 'MAKE_RANKING':
     return Object.assign({}, state, {
       ranking: action.ranking,
-      bucome: action.bucome
+      bucome: action.bucome,
     })
   default:
     return state

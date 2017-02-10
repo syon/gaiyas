@@ -3,7 +3,7 @@
 import $ from 'jquery'
 import moment from 'moment'
 
-let B = {}
+const B = {}
 if (location.protocol === 'https:') {
   B.apiOrigin = 'https://b.hatena.ne.jp'
   B.starOrigin = 'https://s.hatena.com'
@@ -14,7 +14,7 @@ if (location.protocol === 'https:') {
 const target_url = location.href
 
 let theRanking = []
-let bucome = {}
+const bucome = {}
 
 export function makeRanking(data) {
   return function (dispatch) {
@@ -24,7 +24,7 @@ export function makeRanking(data) {
       const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
       $.ajax({
         // dataType: 'jsonp', // Needs on development
-        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`
+        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
       })
         .done((data) => {
           if (data.entries.length > 0) {
@@ -35,7 +35,7 @@ export function makeRanking(data) {
           }
         })
         .always(() => {
-          remain_cnt = remain_cnt - 1
+          remain_cnt -= 1
           if (remain_cnt == 0) {
             finishMakeRanking(dispatch)
           }
@@ -51,14 +51,12 @@ function matchUser(element) {
 }
 
 function applyStarCountForRanking(user, star_cnt) {
-  let b = theRanking.find(matchUser, user)
+  const b = theRanking.find(matchUser, user)
   b.star = star_cnt
 }
 
 function finishMakeRanking(dispatch) {
-  theRanking = theRanking.filter((b) => {
-    return b.star > 0
-  }).sort((a, b) => {
+  theRanking = theRanking.filter(b => b.star > 0).sort((a, b) => {
     if (a.star > b.star) return -1
     if (a.star < b.star) return 1
     return 0
@@ -66,7 +64,7 @@ function finishMakeRanking(dispatch) {
   dispatch({
     type: 'MAKE_RANKING',
     ranking: theRanking,
-    bucome: bucome
+    bucome,
   })
 }
 
@@ -74,10 +72,10 @@ export function fetchPosts() {
   return function (dispatch) {
     return $.ajax({
       // dataType: 'jsonp', // Needs on development
-      url: B.apiOrigin + '/entry/jsonlite/?url=' + target_url
+      url: `${B.apiOrigin}/entry/jsonlite/?url=${target_url}`,
     })
-    .done(function(data) {
-      dispatch({ type: 'RECEIVED_1ST', data: data })
+    .done((data) => {
+      dispatch({ type: 'RECEIVED_1ST', data })
       // makeRanking(dispatch, data)
     })
   }
