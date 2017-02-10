@@ -15,12 +15,15 @@ class Main extends Component {
   }
 
   pleaseMore() {
-    this.props.dispatch({ type: 'GO_AHEAD' })
-    this.props.dispatch(makeRanking(this.props.hatebu.hatena))
+    if (this.props.waiting) {
+      this.props.dispatch({ type: 'GO_AHEAD' })
+      this.props.dispatch(makeRanking(this.props.hatebu.hatena))
+    }
   }
 
   switchRankingTab(ev) {
     ev.preventDefault()
+    this.pleaseMore()
     this.props.dispatch({ type: 'TAB_RANKING' })
     $('.ceg__comments').scrollTop(0)
   }
@@ -40,12 +43,6 @@ class Main extends Component {
     const h = hatebu
     let activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     let activeN = (tab === 'New'     ? 'ceg__active' : '')
-    let segR = null
-    if (hatebu.ranking.length > 0) {
-      segR = <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
-    } else {
-      segR = <span className="ceg__seg" onClick={this.pleaseMore}>Ranking</span>
-    }
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
@@ -55,7 +52,7 @@ class Main extends Component {
         </div>
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
-            { segR }
+            <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
             <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
           </div>
         </div>
