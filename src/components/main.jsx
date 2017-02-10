@@ -46,7 +46,7 @@ class Main extends Component {
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
-          <button className="ceg__toggle" onClick={this.toggleClose}>B!</button>
+          <button className="ceg__toggle" onClick={Main.toggleClose}>B!</button>
           <div className="ceg__title">Hatena Bookmark</div>
           <div className="ceg__cnt">{h.hatena.count}</div>
         </div>
