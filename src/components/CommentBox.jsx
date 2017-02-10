@@ -11,6 +11,7 @@ class CommentBox extends Component {
     hatebu: PropTypes.object.isRequired,
     tab: PropTypes.string.isRequired,
     waiting: PropTypes.object.isRequired,
+    manual: PropTypes.bool.isRequired,
   }
 
   constructor() {
@@ -20,10 +21,12 @@ class CommentBox extends Component {
   }
 
   autoControl(commentCount) {
-    if (commentCount > 0 && window.innerWidth > 1500) {
-      $('#chrome-extension-gaiyas').removeClass('closed')
-    } else if (this.props.tab === 'New') {
-      $('#chrome-extension-gaiyas').addClass('closed')
+    if (!this.props.manual) {
+      if (commentCount > 0 && window.innerWidth > 1500) {
+        $('#chrome-extension-gaiyas').removeClass('closed')
+      } else if (this.props.tab === 'New') {
+        $('#chrome-extension-gaiyas').addClass('closed')
+      }
     }
   }
 
@@ -33,10 +36,21 @@ class CommentBox extends Component {
     let progress = null
     switch (this.props.tab) {
       case 'New':
-        theList = <TimeOrderList hatebu={this.props.hatebu} autoControl={this.autoControl} />
+        theList = (
+          <TimeOrderList
+            hatebu={this.props.hatebu}
+            autoControl={this.autoControl}
+          />
+        )
         break
       case 'Ranking':
-        theList = <StarOrderList hatebu={this.props.hatebu} ranking={this.props.hatebu.ranking} autoControl={this.autoControl} />
+        theList = (
+          <StarOrderList
+            hatebu={this.props.hatebu}
+            ranking={this.props.hatebu.ranking}
+            autoControl={this.autoControl}
+          />
+        )
         progress = waiting.progressRate < 1 ? <ProgressBar rate={waiting.progressRate} /> : null
         break
       default:

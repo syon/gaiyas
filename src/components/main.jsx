@@ -14,15 +14,18 @@ class Main extends Component {
     waiting: PropTypes.object.isRequired,
   }
 
-  static toggleClose() {
-    $('#chrome-extension-gaiyas').toggleClass('closed')
-  }
-
   constructor() {
     super()
+    this.toggleClose = this.toggleClose.bind(this)
     this.pleaseMore = this.pleaseMore.bind(this)
     this.switchRankingTab = this.switchRankingTab.bind(this)
     this.switchNewTab = this.switchNewTab.bind(this)
+    this.state = { manual: false }
+  }
+
+  toggleClose() {
+    this.setState({ manual: true })
+    $('#chrome-extension-gaiyas').toggleClass('closed')
   }
 
   pleaseMore() {
@@ -53,7 +56,7 @@ class Main extends Component {
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
-          <button className="ceg__toggle" onClick={Main.toggleClose}>B!</button>
+          <button className="ceg__toggle" onClick={this.toggleClose}>B!</button>
           <div className="ceg__title">Hatena Bookmark</div>
           <div className="ceg__cnt">{h.hatena.count}</div>
         </div>
@@ -63,7 +66,7 @@ class Main extends Component {
             <button className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</button>
           </div>
         </div>
-        <CommentBox {...this.props} />
+        <CommentBox {...this.props} manual={this.state.manual} />
       </div>
     )
   }
