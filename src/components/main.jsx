@@ -1,48 +1,80 @@
 /* @type */
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import $ from 'jquery'
-import CommentList from './CommentList.jsx'
-const T = React.PropTypes
+import CommentBox from './CommentBox.jsx'
+import { makeRanking } from '../actions'
 
-module.exports = React.createClass({
-  propTypes: {
-    store: T.object.isRequired
-  },
-  getInitialState() {
-    return {tab: 'New'}
-  },
+class Main extends Component {
+
+  static toggleClose() {
+    $('#chrome-extension-gaiyas').toggleClass('closed')
+  }
+
+  constructor() {
+    super()
+    this.pleaseMore = this.pleaseMore.bind(this)
+    this.switchRankingTab = this.switchRankingTab.bind(this)
+    this.switchNewTab = this.switchNewTab.bind(this)
+  }
+
+  pleaseMore() {
+    if (this.props.waiting.isWaiting) {
+      this.props.dispatch({ type: 'GO_AHEAD' })
+      this.props.dispatch(makeRanking(this.props.hatebu.hatena))
+    }
+  }
+
   switchRankingTab(ev) {
     ev.preventDefault()
-    this.setState({tab: 'Ranking'})
+    this.pleaseMore()
+    this.props.dispatch({ type: 'TAB_RANKING' })
     $('.ceg__comments').scrollTop(0)
-  },
+  }
+
   switchNewTab(ev) {
     ev.preventDefault()
-    this.setState({tab: 'New'})
+    this.props.dispatch({ type: 'TAB_NEW' })
     $('.ceg__comments').scrollTop(0)
-  },
-  toggleClose() {
-    $('#chrome-extension-gaiyas').toggleClass('closed')
-  },
+  }
+
   render() {
-    const h = this.props.store.hatena
-    let activeR = (this.state.tab === 'Ranking' ? 'ceg__active' : '')
-    let activeN = (this.state.tab === 'New'     ? 'ceg__active' : '')
+    const { hatebu, tab } = this.props
+    const h = hatebu
+    const activeR = (tab === 'Ranking' ? 'ceg__active' : '')
+    const activeN = (tab === 'New' ? 'ceg__active' : '')
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
           <button className="ceg__toggle" onClick={this.toggleClose}>B!</button>
           <div className="ceg__title">Hatena Bookmark</div>
-          <div className="ceg__cnt">{h.count}</div>
+          <div className="ceg__cnt">{h.hatena.count}</div>
         </div>
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
-            <a href="#" className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</a>
-            <a href="#" className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</a>
+            <button className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</button>
+            <button className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</button>
           </div>
         </div>
-        <CommentList store={this.props.store} tab={this.state.tab} />
+        <CommentBox {...this.props} />
       </div>
     )
   }
-})
+}
+
+Main.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  hatebu: PropTypes.object.isRequired,
+  tab: PropTypes.string.isRequired,
+  waiting: PropTypes.object.isRequired,
+}
+
+function select(state) {
+  return {
+    hatebu: state.hatebu,
+    tab: state.tab,
+    waiting: state.waiting,
+  }
+}
+
+export default connect(select)(Main)

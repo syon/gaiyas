@@ -95,9 +95,14 @@
     color: #fff;
   }
 
+  .ceg__commentbox {
+    flex: 1;
+    display: flex;
+    overflow-y: hidden;
+  }
+
   .ceg__comments {
     padding: 10px 0 30px 10px;
-    flex: 1;
     overflow-y: auto;
   }
 

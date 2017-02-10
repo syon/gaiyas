@@ -1,6 +1,9 @@
 {
   "name": "gaiyas",
   "private": true,
+  "description": "外野たち",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
   "scripts": {
     "start": "webpack -w -d",
     "build": "webpack",
@@ -9,8 +12,13 @@
     "postinstall": "webpack"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "jquery": "^3.1.1",
     "serve": "^3.0.2"
   },
   "devDependencies": {
@@ -23,10 +31,12 @@
     "browser-sync": "^2.18.6",
     "browser-sync-webpack-plugin": "^1.1.3",
     "css-loader": "^0.26.1",
-    "eslint": "^3.14.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.38.0",
-    "jquery": "^3.1.1",
     "moment": "^2.17.1",
     "node-sass": "^4.4.0",
     "postcss-loader": "^1.2.2",
@@ -43,5 +53,16 @@
       "es2015",
       "react"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syon/gaiyas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syon/gaiyas/issues"
+  },
+  "homepage": "https://github.com/syon/gaiyas#readme"
 }
