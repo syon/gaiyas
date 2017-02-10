@@ -11,48 +11,18 @@ if (location.protocol === 'https:') {
   B.apiOrigin = 'http://api.b.st-hatena.com'
   B.starOrigin = 'http://s.hatena.com'
 }
-const target_url = location.href
+const targetUrl = location.href
 
 let theRanking = []
 const bucome = {}
-
-export function makeRanking(data) {
-  return function (dispatch) {
-    theRanking = Object.assign([], data.bookmarks)
-    let remain_cnt = data.bookmarks.length
-    data.bookmarks.forEach((b) => {
-      const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
-      $.ajax({
-        // dataType: 'jsonp', // Needs on development
-        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
-      })
-        .done((data) => {
-          if (data.entries.length > 0) {
-            const stars = data.entries[0].stars
-            bucome[b.user] = stars.length
-            applyStarCountForRanking(b.user, stars.length)
-            // console.log(theRanking)
-          }
-        })
-        .always(() => {
-          remain_cnt -= 1
-          if (remain_cnt == 0) {
-            finishMakeRanking(dispatch)
-          }
-          dispatch({ type: 'UPD_PROGRESS', remain: remain_cnt, all: data.bookmarks.length })
-          console.log(remain_cnt)
-        })
-    })
-  }
-}
 
 function matchUser(element) {
   return element.user === this
 }
 
-function applyStarCountForRanking(user, star_cnt) {
+function applyStarCountForRanking(user, starCnt) {
   const b = theRanking.find(matchUser, user)
-  b.star = star_cnt
+  b.star = starCnt
 }
 
 function finishMakeRanking(dispatch) {
@@ -68,11 +38,41 @@ function finishMakeRanking(dispatch) {
   })
 }
 
+export function makeRanking(data) {
+  return (dispatch) => {
+    theRanking = Object.assign([], data.bookmarks)
+    let remainCnt = data.bookmarks.length
+    data.bookmarks.forEach((b) => {
+      const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
+      $.ajax({
+        // dataType: 'jsonp', // Needs on development
+        url: `${B.starOrigin}/entry.json?uri=http://b.hatena.ne.jp/${b.user}/${yyyymmdd}%23bookmark-${data.eid}`,
+      })
+        .done((d) => {
+          if (d.entries.length > 0) {
+            const stars = d.entries[0].stars
+            bucome[b.user] = stars.length
+            applyStarCountForRanking(b.user, stars.length)
+            // console.log(theRanking)
+          }
+        })
+        .always(() => {
+          remainCnt -= 1
+          if (remainCnt === 0) {
+            finishMakeRanking(dispatch)
+          }
+          dispatch({ type: 'UPD_PROGRESS', remain: remainCnt, all: data.bookmarks.length })
+          // console.log(remainCnt)
+        })
+    })
+  }
+}
+
 export function fetchPosts() {
-  return function (dispatch) {
+  return (dispatch) => {
     return $.ajax({
       // dataType: 'jsonp', // Needs on development
-      url: `${B.apiOrigin}/entry/jsonlite/?url=${target_url}`,
+      url: `${B.apiOrigin}/entry/jsonlite/?url=${targetUrl}`,
     })
     .done((data) => {
       dispatch({ type: 'RECEIVED_1ST', data })

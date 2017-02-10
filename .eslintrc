@@ -22,6 +22,7 @@
     "linebreak-style": ["error", "unix" ],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
+    "arrow-body-style": "off",
     "import/extensions": [2, "never", { "jsx": "always" }],
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
