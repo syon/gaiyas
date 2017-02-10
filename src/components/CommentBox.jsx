@@ -16,7 +16,9 @@ module.exports = React.createClass({
     if (commentCount > 0 && window.innerWidth > 1500) {
       $('#chrome-extension-gaiyas').removeClass('closed')
     } else {
-      $('#chrome-extension-gaiyas').addClass('closed')
+      if (this.props.tab === 'New') {
+        $('#chrome-extension-gaiyas').addClass('closed')
+      }
     }
   },
   render() {
