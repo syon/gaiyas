@@ -164,6 +164,8 @@
   }
 
   .ceg__username {
+    display: flex;
+    align-items: center;
     font-size: 12px;
     color: rgb(165, 165, 167);
   }
@@ -187,9 +189,8 @@
   }
 
   .ceg__star {
-    font-size: 10px;
+    font-size: 12px;
     color: #F5AC0F;
-    font-weight: bold;
     letter-spacing: -0.05em;
   }
 
