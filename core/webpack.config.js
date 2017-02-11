@@ -2,20 +2,20 @@ const webpack = require('webpack')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
-  context: __dirname + '/src',
+  context: `${__dirname}/src`,
 
   entry: {
     javascript: './app.js',
   },
 
   output: {
-    path: __dirname + '/www',
-    filename: 'bundle.js'
+    path: `${__dirname}/www`,
+    filename: 'bundle.js',
   },
 
   devServer: {
     contentBase: 'www',
-    port: 3000
+    port: 3000,
   },
 
   devtool: 'source-map',
@@ -26,36 +26,36 @@ module.exports = {
         // https://github.com/babel/babel-loader
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
-      }
-    ]
+        loader: 'style-loader!css-loader!postcss-loader',
+      },
+    ],
   },
 
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     // new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BrowserSyncPlugin({
-      server: { baseDir: ['./www'] }
-    })
+      server: { baseDir: ['./www'] },
+    }),
   ],
 
-  postcss: function() {
-    var precss = require('precss')
-    var autoprefixer = require('autoprefixer')
+  postcss: () => {
+    const precss = require('precss')
+    const autoprefixer = require('autoprefixer')
     return [
       autoprefixer({ browsers: ['IE 9', 'IE 10', 'IE 11', 'last 2 versions'] }),
-      precss
+      precss,
     ]
-  }
+  },
 }
