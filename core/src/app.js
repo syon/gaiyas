@@ -15,7 +15,7 @@ store.dispatch(fetchPosts()).then(() => {
   if (!state.waiting.isWaiting) {
     store.dispatch(makeRanking(state.hatebu.hatena))
   } else {
-    console.log('Waiting...', store.getState())
+    // console.log('Waiting...', store.getState())
   }
 })
 
