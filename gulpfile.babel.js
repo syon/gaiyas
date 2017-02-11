@@ -102,6 +102,12 @@ gulp.task('watch', ['lint', 'babel'], () => {
 
   gulp.watch('app/scripts.babel/**/*.js', ['lint', 'babel']);
   gulp.watch('bower.json', ['wiredep']);
+  gulp.watch('core/www/**/*', ['sync-webpack']);
+});
+
+gulp.task('sync-webpack', () => {
+  gulp.src('core/www/bundle.js*')
+    .pipe(gulp.dest('app/scripts'))
 });
 
 gulp.task('size', () => {
