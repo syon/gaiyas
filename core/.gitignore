@@ -1,0 +1,5 @@
+node_modules
+npm-debug.log
+www/scripts/bundle.js
+www/scripts/bundle.js.map
+!www/scripts/index.html

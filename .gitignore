@@ -1,5 +1,0 @@
-node_modules
-npm-debug.log
-app/scripts/bundle.js
-app/scripts/bundle.js.map
-!app/scripts/index.html

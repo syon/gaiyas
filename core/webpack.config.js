@@ -9,12 +9,12 @@ module.exports = {
   },
 
   output: {
-    path: __dirname + '/app/scripts',
+    path: __dirname + '/www/scripts',
     filename: 'bundle.js'
   },
 
   devServer: {
-    contentBase: 'app',
+    contentBase: 'www',
     port: 3000
   },
 
@@ -46,7 +46,7 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BrowserSyncPlugin({
-      server: { baseDir: ['./app'] }
+      server: { baseDir: ['./www'] }
     })
   ],
 
