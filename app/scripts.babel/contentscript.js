@@ -1,3 +1,6 @@
 'use strict';
 
-console.log('\'Allo \'Allo! Content script');
+var gaiyas = document.createElement('div');
+gaiyas.id = 'chrome-extension-gaiyas';
+gaiyas.className = 'closed';
+document.body.appendChild(gaiyas);
