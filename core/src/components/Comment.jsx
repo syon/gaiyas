@@ -29,9 +29,9 @@ class Comment extends Component {
     const b = this.props.bookmark
     const bucomeHash = this.props.bucome
     const u = `${b.user.slice(0, 2)}/${b.user}`
-    let s = null
+    let star = null
     if (bucomeHash && bucomeHash[b.user]) {
-      s = `★${bucomeHash[b.user]}`
+      star = `★${bucomeHash[b.user]}`
     }
     if (this.state.p < this.props.pos + 1000 && !this.state.overred) {
       this.setState({ overred: true })
@@ -53,7 +53,7 @@ class Comment extends Component {
             </div>
           </div>
           <div className="ceg__cmtr-right">
-            <div className="ceg__star">{ s }</div>
+            <div className="ceg__star">{ star }</div>
             <div className="ceg__timestamp">{ timestamp }</div>
           </div>
         </div>

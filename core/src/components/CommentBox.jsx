@@ -51,7 +51,9 @@ class CommentBox extends Component {
             autoControl={this.autoControl}
           />
         )
-        progress = waiting.progressRate < 1 ? <ProgressBar rate={waiting.progressRate} /> : null
+        if (waiting.progressRate < 1) {
+          progress = <ProgressBar rate={waiting.progressRate} />
+        }
         break
       default:
     }

@@ -53,7 +53,6 @@ export function makeRanking(data) {
             const stars = d.entries[0].stars
             bucome[b.user] = stars.length
             applyStarCountForRanking(b.user, stars.length)
-            // console.log(theRanking)
           }
         })
         .always(() => {
@@ -62,7 +61,6 @@ export function makeRanking(data) {
             finishMakeRanking(dispatch)
           }
           dispatch({ type: 'UPD_PROGRESS', remain: remainCnt, all: data.bookmarks.length })
-          // console.log(remainCnt)
         })
     })
   }
@@ -76,7 +74,6 @@ export function fetchPosts() {
     })
     .done((data) => {
       dispatch({ type: 'RECEIVED_1ST', data })
-      // makeRanking(dispatch, data)
     })
   }
 }

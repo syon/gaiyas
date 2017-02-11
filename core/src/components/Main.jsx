@@ -50,7 +50,6 @@ class Main extends Component {
 
   render() {
     const { hatebu, tab } = this.props
-    const h = hatebu
     const activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     const activeN = (tab === 'New' ? 'ceg__active' : '')
     return (
@@ -58,7 +57,7 @@ class Main extends Component {
         <div className="ceg__header">
           <button className="ceg__toggle" onClick={this.toggleClose}>B!</button>
           <div className="ceg__title">Hatena Bookmark</div>
-          <div className="ceg__cnt">{h.hatena.count}</div>
+          <div className="ceg__cnt">{hatebu.hatena.count}</div>
         </div>
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
