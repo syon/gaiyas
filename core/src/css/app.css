@@ -73,6 +73,7 @@
 
       .ceg__seg {
         flex: 1;
+        margin: 0;
         padding: 2px 0;
         text-align: center;
         font-size: 13px;
@@ -93,11 +94,11 @@
           cursor: auto;
         }
         &:first-child {
-          border-top-left-radius: 3px;
-          border-bottom-left-radius: 3px;
+          border-radius: 3px 0 0 3px;
         }
         &:last-child {
           border-right: 1px solid #00a4de;
+          border-radius: 0 3px 3px 0;
           border-top-right-radius: 3px;
           border-bottom-right-radius: 3px;
         }
