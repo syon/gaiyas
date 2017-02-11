@@ -1,4 +1,10 @@
 node_modules
-npm-debug.log
-www/*
-!www/index.html
+temp
+.tmp
+dist
+.sass-cache
+app/bower_components
+test/bower_components
+package
+app/scripts
+

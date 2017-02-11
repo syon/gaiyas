@@ -1,71 +1,47 @@
 {
   "name": "gaiyas",
   "private": true,
-  "description": "外野たち",
-  "version": "1.0.0",
-  "main": "webpack.config.js",
-  "scripts": {
-    "start": "webpack -w -d",
-    "build": "webpack",
-    "flow": "flow",
-    "foreman": "nf start",
-    "postinstall": "webpack"
-  },
-  "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.2",
-    "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
-    "jquery": "^3.1.1",
-    "moment": "^2.17.1",
-    "serve": "^3.0.2"
+  "engines": {
+    "node": ">=0.8.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.0",
-    "babel-core": "^6.22.1",
-    "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
-    "babel-preset-stage-1": "^6.22.0",
-    "browser-sync": "^2.18.6",
-    "browser-sync-webpack-plugin": "^1.1.3",
-    "css-loader": "^0.26.1",
-    "eslint": "^3.15.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0",
-    "flow-bin": "^0.38.0",
-    "node-sass": "^4.4.0",
-    "postcss-loader": "^1.2.2",
-    "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.0.0",
-    "precss": "^1.4.0",
-    "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "babel-core": "^6.7.2",
+    "babel-preset-es2015": "^6.6.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cache": "^0.4.3",
+    "gulp-chrome-manifest": "0.0.13",
+    "gulp-clean-css": "^2.0.3",
+    "gulp-eslint": "^2.0.0",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-useref": "^3.0.8",
+    "gulp-zip": "^3.2.0",
+    "main-bower-files": "^2.11.1",
+    "run-sequence": "^1.1.5",
+    "wiredep": "^4.0.0"
   },
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-1",
-      "react"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/syon/gaiyas.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/syon/gaiyas/issues"
-  },
-  "homepage": "https://github.com/syon/gaiyas#readme"
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "browser": true
+    },
+    "globals": {
+      "chrome": true
+    },
+    "rules": {
+      "eol-last": 0,
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
+  }
 }
