@@ -8,7 +8,7 @@ Chrome拡張の土台は [yeoman/generator\-chrome\-extension](https://github.co
 $ cd gaiyas
 $ npm install --global gulp-cli bower
 $ cd core
-$ cd yarn install
+$ yarn install
 ```
 
 ## start dev
@@ -21,7 +21,7 @@ $ gulp watch
 ```
 ```sh
 $ cd core
-$ cd yarn start
+$ yarn start
 ```
 
 ## build
