@@ -9,6 +9,8 @@ const initialState = {
 
 const hatebu = (state = initialState, action) => {
   switch (action.type) {
+    case 'RECEIVED_NONE':
+      return state
     case 'RECEIVED_1ST':
       return Object.assign({}, state, {
         hatena: action.data,

@@ -73,7 +73,12 @@ export function fetchPosts() {
       url: `${B.apiOrigin}/entry/jsonlite/?url=${targetUrl}`,
     })
     .done((data) => {
-      dispatch({ type: 'RECEIVED_1ST', data })
+      if (data && data.bookmarks.length > 0) {
+        $('#chrome-extension-gaiyas').removeClass('preparing')
+        dispatch({ type: 'RECEIVED_1ST', data })
+      } else {
+        dispatch({ type: 'RECEIVED_NONE', data })
+      }
     })
   }
 }

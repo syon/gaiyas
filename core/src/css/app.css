@@ -32,6 +32,10 @@
     }
   }
 
+  &.preparing {
+    display: none;
+  }
+
   &.closed {
     right: -250px;
 
