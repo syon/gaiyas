@@ -6,6 +6,7 @@ import Comment from './Comment.jsx'
 class AllOrderList extends Component {
 
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     hatebu: PropTypes.object.isRequired,
     autoControl: PropTypes.func.isRequired,
   }

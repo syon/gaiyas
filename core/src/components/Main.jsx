@@ -11,6 +11,7 @@ class Main extends Component {
     dispatch: PropTypes.func.isRequired,
     hatebu: PropTypes.object.isRequired,
     tab: PropTypes.string.isRequired,
+    tabCnt: PropTypes.number.isRequired,
     waiting: PropTypes.object.isRequired,
   }
 
@@ -56,7 +57,7 @@ class Main extends Component {
   }
 
   render() {
-    const { hatebu, tab } = this.props
+    const { hatebu, tab, tabCnt } = this.props
     const activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     const activeN = (tab === 'New' ? 'ceg__active' : '')
     const activeA = (tab === 'All' ? 'ceg__active' : '')
@@ -70,8 +71,8 @@ class Main extends Component {
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
             <button className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</button>
-            <button className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</button>
-            <button className={`ceg__seg ${activeA}`} onClick={this.switchAllTab}>All</button>
+            <button className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>{`New ${tabCnt.tabN}`}</button>
+            <button className={`ceg__seg ${activeA}`} onClick={this.switchAllTab}>{`All ${tabCnt.tabA}`}</button>
           </div>
         </div>
         <CommentBox {...this.props} manual={this.state.manual} />
@@ -84,6 +85,7 @@ function select(state) {
   return {
     hatebu: state.hatebu,
     tab: state.tab,
+    tabCnt: state.tabCnt,
     waiting: state.waiting,
   }
 }
