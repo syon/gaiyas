@@ -20,6 +20,7 @@ class Main extends Component {
     this.pleaseMore = this.pleaseMore.bind(this)
     this.switchRankingTab = this.switchRankingTab.bind(this)
     this.switchNewTab = this.switchNewTab.bind(this)
+    this.switchAllTab = this.switchAllTab.bind(this)
     this.state = { manual: false }
   }
 
@@ -48,10 +49,17 @@ class Main extends Component {
     $('.ceg__comments').scrollTop(0)
   }
 
+  switchAllTab(ev) {
+    ev.preventDefault()
+    this.props.dispatch({ type: 'TAB_ALL' })
+    $('.ceg__comments').scrollTop(0)
+  }
+
   render() {
     const { hatebu, tab } = this.props
     const activeR = (tab === 'Ranking' ? 'ceg__active' : '')
     const activeN = (tab === 'New' ? 'ceg__active' : '')
+    const activeA = (tab === 'All' ? 'ceg__active' : '')
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
@@ -63,6 +71,7 @@ class Main extends Component {
           <div className="ceg__segments">
             <button className={`ceg__seg ${activeR}`} onClick={this.switchRankingTab}>Ranking</button>
             <button className={`ceg__seg ${activeN}`} onClick={this.switchNewTab}>New</button>
+            <button className={`ceg__seg ${activeA}`} onClick={this.switchAllTab}>All</button>
           </div>
         </div>
         <CommentBox {...this.props} manual={this.state.manual} />

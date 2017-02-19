@@ -6,6 +6,8 @@ const tab = (state = initialState, action) => {
       return 'Ranking'
     case 'TAB_NEW':
       return 'New'
+    case 'TAB_ALL':
+      return 'All'
     default:
       return state
   }
