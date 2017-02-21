@@ -13,7 +13,6 @@
   min-width: initial;
   text-align: initial;
   word-break: break-all;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "MS PGothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #ddd;
   line-height: 1;
   letter-spacing: 0;
@@ -22,8 +21,17 @@
   font-feature-settings: "palt";
   transition: all 200ms 0s ease;
 
+  /* Reset */
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: initial;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "MS PGothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-shadow: none;
+    box-shadow: none;
+    background: none;
+    border-radius: 0;
 
     :before,
     :after {
