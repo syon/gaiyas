@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import $ from 'jquery'
 import CommentBox from './CommentBox.jsx'
 import { makeRanking } from '../actions'
+import bubbleIcon from '../icons/bubble.svg'
+import bookmarkIcon from '../icons/bookmark.svg'
+import voiceIcon from '../icons/voice.svg'
 
 class Main extends Component {
 
@@ -64,9 +67,17 @@ class Main extends Component {
     return (
       <div className="ceg__wrap">
         <div className="ceg__header">
-          <button className="ceg__toggle" onClick={this.toggleClose}>B!</button>
-          <div className="ceg__title">Hatena Bookmark</div>
-          <div className="ceg__cnt">{hatebu.hatena.count}</div>
+          <button className="ceg__toggle" onClick={this.toggleClose}>
+            <img src={bubbleIcon} alt="" />
+          </button>
+          <div className="ceg__cnt">
+            <img src={bookmarkIcon} alt="" />
+            <span>{hatebu.hatena.count}</span>
+          </div>
+          <div className="ceg__cnt">
+            <img src={voiceIcon} alt="" />
+            <span>{tabCnt.tabN}</span>
+          </div>
         </div>
         <div className="ceg__segmentcontrol">
           <div className="ceg__segments">
