@@ -40,9 +40,12 @@ function finishMakeRanking(dispatch) {
 
 export function makeRanking(data) {
   return (dispatch) => {
-    theRanking = Object.assign([], data.bookmarks)
-    let remainCnt = data.bookmarks.length
-    data.bookmarks.forEach((b) => {
+    const bookmarksWithComment = data.bookmarks.filter(d => {
+      return d.comment
+    })
+    theRanking = Object.assign([], bookmarksWithComment)
+    let remainCnt = bookmarksWithComment.length
+    bookmarksWithComment.forEach((b) => {
       const yyyymmdd = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYYMMDD')
       $.ajax({
         // dataType: 'jsonp', // Needs on development
@@ -60,7 +63,7 @@ export function makeRanking(data) {
           if (remainCnt === 0) {
             finishMakeRanking(dispatch)
           }
-          dispatch({ type: 'UPD_PROGRESS', remain: remainCnt, all: data.bookmarks.length })
+          dispatch({ type: 'UPD_PROGRESS', remain: remainCnt, all: bookmarksWithComment.length })
         })
     })
   }
