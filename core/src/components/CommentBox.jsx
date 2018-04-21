@@ -1,5 +1,7 @@
 /* @type */
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import $ from 'jquery'
 import TimeOrderList from './TimeOrderList.jsx'
 import StarOrderList from './StarOrderList.jsx'

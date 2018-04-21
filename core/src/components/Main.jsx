@@ -1,5 +1,7 @@
 /* @type */
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import $ from 'jquery'
 import CommentBox from './CommentBox.jsx'
