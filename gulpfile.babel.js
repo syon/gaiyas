@@ -131,6 +131,7 @@ gulp.task('package', function () {
 
 gulp.task('build', (cb) => {
   runSequence(
+    'sync-webpack',
     'lint', 'babel', 'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);

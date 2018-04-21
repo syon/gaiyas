@@ -18,7 +18,7 @@ module.exports = {
     port: 3000,
   },
 
-  mode: process.env.NODE_ENV !== "production" ? "develop" : "production",
+  mode: process.env.NODE_ENV !== "production" ? "development" : "production",
   devtool: 'source-map',
 
   module: {

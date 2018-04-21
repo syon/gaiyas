@@ -1,5 +1,6 @@
 body {
   min-width: 200px;
+  min-height: 400px;
   padding: 20px;
   text-align: center;
 }

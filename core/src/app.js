@@ -11,7 +11,8 @@ const url = new URL(location.href);
 // ?chrome-extension-gaiyas=URL
 // or
 // location.href
-const targetUrl = url.searchParams.has("chrome-extension-gaiyas")
+const isPopupEmbed = url.searchParams.has("chrome-extension-gaiyas");
+const targetUrl = isPopupEmbed
                   ? url.searchParams.get("chrome-extension-gaiyas")
                   : url.toString();
 const store = configureStore
@@ -28,7 +29,7 @@ store.dispatch(fetchPosts(targetUrl)).then(() => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <Main manual={isPopupEmbed}/>
   </Provider>,
   document.getElementById('chrome-extension-gaiyas'),
 )

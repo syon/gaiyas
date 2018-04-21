@@ -40,7 +40,7 @@ class Comment extends Component {
     }
     let imgurl = ''
     if (this.state.overred) {
-      imgurl = `//cdn1.www.st-hatena.com/users/${u}/profile_l.gif`
+      imgurl = `https://cdn1.www.st-hatena.com/users/${u}/profile_l.gif`
     }
     const timestamp = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYY.M.D')
     return (
