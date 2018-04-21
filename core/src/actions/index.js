@@ -11,7 +11,6 @@ if (location.protocol === 'https:') {
   B.apiOrigin = 'http://api.b.st-hatena.com'
   B.starOrigin = 'http://s.hatena.com'
 }
-const targetUrl = location.href
 
 let theRanking = []
 const bucome = {}
@@ -69,11 +68,11 @@ export function makeRanking(data) {
   }
 }
 
-export function fetchPosts() {
+export function fetchPosts(targetUrl) {
   return (dispatch) => {
     return $.ajax({
       // dataType: 'jsonp', // Needs on development
-      url: `${B.apiOrigin}/entry/jsonlite/?url=${targetUrl}`,
+      url: `${B.apiOrigin}/entry/jsonlite/?url=${encodeURIComponent(targetUrl)}`,
     })
     .done((data) => {
       if (data && data.bookmarks.length > 0) {

@@ -7,9 +7,16 @@ import Main from './components/Main.jsx'
 import configureStore from './store/configureStore'
 import './css/app.css'
 
+const url = new URL(location.href);
+// ?chrome-extension-gaiyas=URL
+// or
+// location.href
+const targetUrl = url.searchParams.has("chrome-extension-gaiyas")
+                  ? url.searchParams.get("chrome-extension-gaiyas")
+                  : url.toString();
 const store = configureStore
 
-store.dispatch(fetchPosts()).then(() => {
+store.dispatch(fetchPosts(targetUrl)).then(() => {
   // console.log('store.dispatch(fetchPosts())', store.getState())
   const state = store.getState()
   if (!state.waiting.isWaiting) {
