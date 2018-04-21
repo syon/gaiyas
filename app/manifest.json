@@ -1,5 +1,19 @@
 {
   "name": "__MSG_appName__",
+  "applications": {
+    "gecko": {
+      "id": "gaiyas@example.com",
+      "strict_min_version": "42.0"
+    }
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+Shift+C"
+      }
+    }
+  },
   "version": "0.0.7",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
@@ -38,7 +52,6 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "gaiyas",
-    "default_popup": "popup.html"
+    "default_title": "gaiyas"
   }
 }

@@ -1,13 +1,8 @@
 'use strict';
-
-chrome.runtime.onInstalled.addListener(details => {
-  console.log('previousVersion', details.previousVersion);
-});
-
 const countMap = new Map();
 const fetchHatebuCount = (url) => {
   if (countMap.has(url)) {
-    return countMap.get(url);
+    return Promise.resolve(countMap.get(url));
   }
   return fetch(`http://api.b.st-hatena.com/entry.counts?url=${encodeURIComponent(url)}`)
     .then(res => res.json())
@@ -32,15 +27,34 @@ const updateHatebuButton = (tabId, url) => {
     chrome.browserAction.setBadgeText({ text: null });
   });
 };
-
-chrome.tabs.onCreated.addListener(function(tab){
+const openHatebu = (url) => {
+  chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+    const activeTabInfo = tabs[0];
+    updateHatebuButton(activeTabInfo.id, url || activeTabInfo.url);
+    if (chrome.browserAction.openPopup) {
+      chrome.browserAction.openPopup();
+    }
+  });
+};
+chrome.tabs.onCreated.addListener(function(tab) {
   updateHatebuButton(tab.id, tab.url);
 });
 chrome.tabs.onActivated.addListener(function(activeInfo) {
-  chrome.tabs.get(activeInfo.tabId, function(tab){
+  chrome.tabs.get(activeInfo.tabId, function(tab) {
     updateHatebuButton(activeInfo.tabId, tab.url);
   });
 });
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   updateHatebuButton(tab.id, tab.url);
 });
+
+// receive message from other extension
+// TODO: browserAction.openPopup may only be called from a user input handler
+// chrome.runtime.onMessageExternal.addListener(function(message, sender, sendResponse) {
+//   // console.log("gaiyas::onMessageExternal", message)
+//   const url = message.url;
+//   if (!url) {
+//     return sendResponse(false);
+//   }
+//   openHatebu(url);
+// });
