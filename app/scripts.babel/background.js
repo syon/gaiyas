@@ -47,14 +47,3 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   updateHatebuButton(tab.id, tab.url);
 });
-
-// receive message from other extension
-// TODO: browserAction.openPopup may only be called from a user input handler
-// chrome.runtime.onMessageExternal.addListener(function(message, sender, sendResponse) {
-//   // console.log("gaiyas::onMessageExternal", message)
-//   const url = message.url;
-//   if (!url) {
-//     return sendResponse(false);
-//   }
-//   openHatebu(url);
-// });
