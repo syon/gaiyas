@@ -23,7 +23,9 @@ window.addEventListener('DOMContentLoaded', function() {
         type: 'gaiyas::fetch',
         url: url
       }, '*');
-    });
+    }).catch(error => {
+      // nope
+    })
   });
 });
 
