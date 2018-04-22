@@ -1,11 +1,9 @@
 'use strict';
-
-
+// If "inject-to-content" option is true, inject gaiyas to content
 browser.storage
   .local
   .get('inject-to-content')
   .then(function(results) {
-    console.log(results);
     if (results['inject-to-content']) {
       // bundles.js is already executed
       var gaiyas = document.createElement('div');

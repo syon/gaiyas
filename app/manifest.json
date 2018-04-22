@@ -1,11 +1,5 @@
 {
   "name": "__MSG_appName__",
-  "applications": {
-    "gecko": {
-      "id": "gaiyas@example.com",
-      "strict_min_version": "42.0"
-    }
-  },
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -24,6 +18,7 @@
   "default_locale": "ja",
   "background": {
     "scripts": [
+      "polyfill/browser-polyfill.js",
       "scripts/chromereload.js",
       "scripts/background.js"
     ]
@@ -44,6 +39,7 @@
         "https://*/*"
       ],
       "js": [
+        "polyfill/browser-polyfill.js",
         "scripts/contentscript.js",
         "scripts/bundle.js"
       ],
@@ -53,7 +49,6 @@
   ],
   "browser_action": {
     "default_icon": {
-      "browser_style": true,
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
