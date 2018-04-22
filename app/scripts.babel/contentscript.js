@@ -1,10 +1,25 @@
 'use strict';
 
-var gaiyas = document.createElement('div');
-gaiyas.id = 'chrome-extension-gaiyas';
-gaiyas.className = 'closed preparing';
-document.body.appendChild(gaiyas);
 
+browser.storage
+  .local
+  .get('inject-to-content')
+  .then(function(results) {
+    console.log(results);
+    if (results['inject-to-content']) {
+      // bundles.js is already executed
+      var gaiyas = document.createElement('div');
+      gaiyas.id = 'chrome-extension-gaiyas';
+      // add `lazy` class
+      gaiyas.className = 'closed preparing lazy';
+      document.body.appendChild(gaiyas);
+      // start to load hatenabookmark
+      window.postMessage({
+        type: 'gaiyas::fetch',
+        url: location.href
+      }, '*');
+    }
+  });
 // background script -> content script(here) -> webpage
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   // console.log('gaiyas::request', request);
@@ -47,7 +62,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
           }, "*");
         }
       });
-     */
+       */
     }
   });
 });

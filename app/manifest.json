@@ -28,8 +28,12 @@
       "scripts/background.js"
     ]
   },
+  "options_ui": {
+    "page": "options.html"
+  },
   "permissions": [
     "tabs",
+    "storage",
     "http://*/*",
     "https://*/*"
   ],
@@ -49,6 +53,7 @@
   ],
   "browser_action": {
     "default_icon": {
+      "browser_style": true,
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
