@@ -18,10 +18,11 @@ module.exports = {
     port: 3000,
   },
 
+  mode: process.env.NODE_ENV !== "production" ? "development" : "production",
   devtool: 'source-map',
 
   module: {
-    loaders: [
+    rules: [
       {
         // https://github.com/babel/babel-loader
         test: /\.jsx?$/,
@@ -30,7 +31,20 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader',
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer')({ browsers: ['IE 9', 'IE 10', 'IE 11', 'last 2 versions'] }),
+                require('precss')
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.(svg)$/,
@@ -45,21 +59,8 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    // new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
     new BrowserSyncPlugin({
       server: { baseDir: ['./www'] },
     }),
-  ],
-
-  postcss: () => {
-    const precss = require('precss')
-    const autoprefixer = require('autoprefixer')
-    return [
-      autoprefixer({ browsers: ['IE 9', 'IE 10', 'IE 11', 'last 2 versions'] }),
-      precss,
-    ]
-  },
+  ]
 }

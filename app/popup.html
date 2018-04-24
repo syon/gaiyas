@@ -9,17 +9,35 @@
     <!-- build:css styles/main.css -->
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
+    <script src="polyfill/browser-polyfill.js"></script>
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+    <style>
+      /* TODO: popup height should be defined by content */
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 400px;
+        height: 1200px;
+      }
+
+      body {
+        width: 250px;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
-    <h1>(・ω&lt;)<br>開発中！</h1>
-
+    <div id="chrome-extension-gaiyas"></div>
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/popup.js -->
-    <script src="scripts/popup.js"></script>
+    <!-- build:js scripts/bundle.js -->
+    <script src="scripts/bundle.js"></script>
     <!-- endbuild -->
   </body>
 </html>

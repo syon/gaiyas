@@ -1,5 +1,7 @@
 /* @type */
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import $ from 'jquery'
 import CommentBox from './CommentBox.jsx'
@@ -16,6 +18,7 @@ class Main extends Component {
     tab: PropTypes.string.isRequired,
     tabCnt: PropTypes.number.isRequired,
     waiting: PropTypes.object.isRequired,
+    manual: PropTypes.bool.isRequired
   }
 
   constructor() {
@@ -57,6 +60,15 @@ class Main extends Component {
     ev.preventDefault()
     this.props.dispatch({ type: 'TAB_ALL' })
     $('.ceg__comments').scrollTop(0)
+  }
+
+  componentDidMount(){
+    if(this.state.manual !== this.props.manual){
+      this.setState({
+        manual: this.props.manual
+      })
+      $('#chrome-extension-gaiyas').toggleClass('closed')
+    }
   }
 
   render() {

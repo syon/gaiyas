@@ -73,9 +73,6 @@ gulp.task('chromeManifest', () => {
       }
   }))
   .pipe($.if('*.css', $.cleanCss({compatibility: '*'})))
-  .pipe($.if('*.js', $.sourcemaps.init()))
-  .pipe($.if('*.js', $.uglify()))
-  .pipe($.if('*.js', $.sourcemaps.write('.')))
   .pipe(gulp.dest('dist'));
 });
 
@@ -131,6 +128,7 @@ gulp.task('package', function () {
 
 gulp.task('build', (cb) => {
   runSequence(
+    'sync-webpack',
     'lint', 'babel', 'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);

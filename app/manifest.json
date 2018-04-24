@@ -1,5 +1,13 @@
 {
   "name": "__MSG_appName__",
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+Shift+C"
+      }
+    }
+  },
   "version": "0.0.7",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
@@ -10,12 +18,17 @@
   "default_locale": "ja",
   "background": {
     "scripts": [
+      "polyfill/browser-polyfill.js",
       "scripts/chromereload.js",
       "scripts/background.js"
     ]
   },
+  "options_ui": {
+    "page": "options.html"
+  },
   "permissions": [
     "tabs",
+    "storage",
     "http://*/*",
     "https://*/*"
   ],
@@ -26,6 +39,7 @@
         "https://*/*"
       ],
       "js": [
+        "polyfill/browser-polyfill.js",
         "scripts/contentscript.js",
         "scripts/bundle.js"
       ],
@@ -38,7 +52,6 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "gaiyas",
-    "default_popup": "popup.html"
+    "default_title": "gaiyas"
   }
 }

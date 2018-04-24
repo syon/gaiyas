@@ -1,5 +1,7 @@
 /* @type */
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import moment from 'moment'
 
@@ -38,7 +40,7 @@ class Comment extends Component {
     }
     let imgurl = ''
     if (this.state.overred) {
-      imgurl = `//cdn1.www.st-hatena.com/users/${u}/profile_l.gif`
+      imgurl = `https://cdn1.www.st-hatena.com/users/${u}/profile_l.gif`
     }
     const timestamp = moment(b.timestamp, 'YYYY/MM/DD HH:mm:ss').format('YYYY.M.D')
     return (
